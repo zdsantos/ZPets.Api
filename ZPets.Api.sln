@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPets.Api", "ZPetz.Api\ZPets.Api.csproj", "{F0CD9941-1F32-4639-98D9-937B0A54A453}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85E39345-8A20-471D-AD05-7ABC2733764F}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPets.Api", "ZPets.Api\ZPets.Api.csproj", "{B2289D14-A7BB-4251-92E2-05CA87BEAD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZPets.Domain", "ZPets.Domain\ZPets.Domain.csproj", "{B3D8BFE2-6829-45DD-BB43-20C3C2549E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZPets.Infra", "ZPets.Infra\ZPets.Infra.csproj", "{8E2C2170-E7D3-41E6-84D1-EC420A6A3827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZPets.Domain.Entity", "ZPets.Domain.Entity\ZPets.Domain.Entity.csproj", "{92E3DA34-5D0E-4BCE-AFB0-C569F5BCE8B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +22,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F0CD9941-1F32-4639-98D9-937B0A54A453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0CD9941-1F32-4639-98D9-937B0A54A453}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0CD9941-1F32-4639-98D9-937B0A54A453}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0CD9941-1F32-4639-98D9-937B0A54A453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2289D14-A7BB-4251-92E2-05CA87BEAD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2289D14-A7BB-4251-92E2-05CA87BEAD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2289D14-A7BB-4251-92E2-05CA87BEAD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2289D14-A7BB-4251-92E2-05CA87BEAD7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D8BFE2-6829-45DD-BB43-20C3C2549E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D8BFE2-6829-45DD-BB43-20C3C2549E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D8BFE2-6829-45DD-BB43-20C3C2549E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D8BFE2-6829-45DD-BB43-20C3C2549E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2C2170-E7D3-41E6-84D1-EC420A6A3827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2C2170-E7D3-41E6-84D1-EC420A6A3827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2C2170-E7D3-41E6-84D1-EC420A6A3827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2C2170-E7D3-41E6-84D1-EC420A6A3827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E3DA34-5D0E-4BCE-AFB0-C569F5BCE8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E3DA34-5D0E-4BCE-AFB0-C569F5BCE8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E3DA34-5D0E-4BCE-AFB0-C569F5BCE8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E3DA34-5D0E-4BCE-AFB0-C569F5BCE8B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
