@@ -1,6 +1,6 @@
-﻿using ZPetz.Api.Entities;
+﻿using ZPets.Api.Entities;
 
-namespace ZPetz.Api.UseCases.Pets.CreatePet
+namespace ZPets.Api.UseCases.Pets.CreatePet
 {
     public class CreatePetRequest
     {

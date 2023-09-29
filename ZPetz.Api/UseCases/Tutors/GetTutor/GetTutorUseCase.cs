@@ -1,8 +1,8 @@
-﻿using ZPetz.Api.Entities;
-using ZPetz.Api.Infra.Data;
-using ZPetz.Api.UseCases.Base;
+﻿using ZPets.Api.Entities;
+using ZPets.Api.Infra.Data;
+using ZPets.Api.UseCases.Base;
 
-namespace ZPetz.Api.UseCases.Tutors.GetTutor
+namespace ZPets.Api.UseCases.Tutors.GetTutor
 {
     public class GetTutorUseCase : BaseUseCase<GetTutorRequest, Tutor>
     {

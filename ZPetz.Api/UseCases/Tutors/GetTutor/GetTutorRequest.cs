@@ -1,4 +1,4 @@
-﻿namespace ZPetz.Api.UseCases.Tutors.GetTutor
+﻿namespace ZPets.Api.UseCases.Tutors.GetTutor
 {
     public class GetTutorRequest
     {

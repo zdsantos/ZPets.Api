@@ -1,4 +1,4 @@
-﻿namespace ZPetz.Api.UseCases.Tutors.UpdateTutor
+﻿namespace ZPets.Api.UseCases.Tutors.UpdateTutor
 {
     public class UpdateTutorRequest
     {

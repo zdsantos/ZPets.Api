@@ -1,4 +1,4 @@
-using ZPetz.Api.Infra.Data;
+using ZPets.Api.Infra.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-﻿namespace ZPetz.Api.UseCases.Base
+﻿namespace ZPets.Api.UseCases.Base
 {
     public enum ErrorKind
     {

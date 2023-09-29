@@ -1,6 +1,6 @@
-﻿using ZPetz.Api.Infra.Data;
+﻿using ZPets.Api.Infra.Data;
 
-namespace ZPetz.Api.UseCases.Base
+namespace ZPets.Api.UseCases.Base
 {
     public abstract class BaseUseCaseNoResponse<TRequest>
     {

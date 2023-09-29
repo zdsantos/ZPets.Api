@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ZPetz.Api.Entities;
+using ZPets.Api.Entities;
 
-namespace ZPetz.Api.Infra.Data
+namespace ZPets.Api.Infra.Data
 {
     public class ApplicationContext : DbContext
     {

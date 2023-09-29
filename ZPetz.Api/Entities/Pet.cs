@@ -1,4 +1,4 @@
-﻿namespace ZPetz.Api.Entities
+﻿namespace ZPets.Api.Entities
 {
     public class Pet
     {

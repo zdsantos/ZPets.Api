@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZPetz.Api.Entities;
-using ZPetz.Api.Infra.Data;
-using ZPetz.Api.UseCases.Base;
-using ZPetz.Api.UseCases.Pets.CreatePet;
-using ZPetz.Api.UseCases.Pets.GetPet;
-using ZPetz.Api.UseCases.Pets.ListPets;
+using ZPets.Api.Entities;
+using ZPets.Api.Infra.Data;
+using ZPets.Api.UseCases.Base;
+using ZPets.Api.UseCases.Pets.CreatePet;
+using ZPets.Api.UseCases.Pets.GetPet;
+using ZPets.Api.UseCases.Pets.ListPets;
 
-namespace ZPetz.Api.Controllers
+namespace ZPets.Api.Controllers
 {
     [ApiController]
     [Route("api/{tutorId}/pets")]

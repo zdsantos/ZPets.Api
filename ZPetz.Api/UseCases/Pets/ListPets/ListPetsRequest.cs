@@ -1,4 +1,4 @@
-﻿namespace ZPetz.Api.UseCases.Pets.ListPets
+﻿namespace ZPets.Api.UseCases.Pets.ListPets
 {
     public class ListPetsRequest
     {

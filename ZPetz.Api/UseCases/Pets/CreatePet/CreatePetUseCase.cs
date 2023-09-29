@@ -1,8 +1,8 @@
-﻿using ZPetz.Api.Entities;
-using ZPetz.Api.Infra.Data;
-using ZPetz.Api.UseCases.Base;
+﻿using ZPets.Api.Entities;
+using ZPets.Api.Infra.Data;
+using ZPets.Api.UseCases.Base;
 
-namespace ZPetz.Api.UseCases.Pets.CreatePet
+namespace ZPets.Api.UseCases.Pets.CreatePet
 {
     public class CreatePetUseCase : BaseUseCase<CreatePetRequest, string>
     {
