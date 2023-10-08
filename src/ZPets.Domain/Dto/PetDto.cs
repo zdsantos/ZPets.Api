@@ -11,7 +11,7 @@ namespace ZPets.Domain.Dto
         public string Breed { get; set; }
         public Gender Gender { get; set; }
         public string PictureUrl { get; set; }
-        public List<Vaccine> Vaccines { get; set; } = new();
-        public List<Weight> Weights { get; set; } = new();
+        public List<VaccineDto> Vaccines { get; set; } = new();
+        public List<WeightDto> Weights { get; set; } = new();
     }
 }

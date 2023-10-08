@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ZPets.Domain.Dto;
+using ZPets.Domain.Shared.Templates;
+using ZPets.Domain.UseCases.Pets.CreatePet;
 
 namespace ZPets.Api.Controllers
 {
@@ -6,35 +9,33 @@ namespace ZPets.Api.Controllers
     [Route("api/{tutorId}/pets")]
     public class PetsController : ControllerBase
     {
-        //private IServiceProvider _serviceProvider;
-        //private ApplicationContext _appContext;
+        private readonly IServiceProvider _serviceProvider;
 
-        //public PetsController(IServiceProvider serviceProvider, ApplicationContext appContext)
-        //{
-        //    _serviceProvider = serviceProvider;
-        //    _appContext = appContext;
-        //}
+        public PetsController(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
-        //[HttpPost]
-        //public async Task<ActionResult> CreatePet([FromRoute] Guid tutorId, [FromBody] CreatePetRequest request)
-        //{
-        //    request.TutorId = tutorId;
+        [HttpPost]
+        public async Task<ActionResult<PetDto>> CreatePet([FromRoute] string tutorId, [FromBody] CreatePetRequest request)
+        {
+            request.TutorId = tutorId;
 
-        //    UseCaseResponseData<string> response = await new CreatePetUseCase(_appContext).Execute(request);
+            UseCaseResponseData<PetDto> response = await _serviceProvider.GetService<ICreatePetUseCase>()!.Execute(request);
 
-        //    if (!response.Success())
-        //    {
-        //        return new ObjectResult(response.Errors)
-        //        {
-        //            StatusCode = (int)response.GetErrorKind().Value,
-        //        };
-        //    }
+            if (!response.Success())
+            {
+                return new ObjectResult(response.Errors)
+                {
+                    StatusCode = (int)response.ErrorKind,
+                };
+            }
 
-        //    return new OkObjectResult(response.Data);
-        //}
+            return new OkObjectResult(response.Data);
+        }
 
         //[HttpGet("{petId}")]
-        //public async Task<ActionResult> GetPet([FromRoute] Guid tutorId, [FromRoute] Guid petId)
+        //public async Task<ActionResult> GetPet([FromRoute] string tutorId, [FromRoute] string petId)
         //{
         //    UseCaseResponseData<Pet> response = await new GetPetUseCase(_appContext).Execute(new GetPetRequest() { TutorId = tutorId, PetId = petId });
 

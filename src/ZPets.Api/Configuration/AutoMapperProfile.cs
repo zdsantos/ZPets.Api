@@ -11,6 +11,8 @@ namespace ZPets.Api.Configuration
         {
             CreateMap<Tutor, TutorDto>();
             CreateMap<Pet, PetDto>();
+            CreateMap<Weight, WeightDto>();
+            CreateMap<Vaccine, VaccineDto>();
         }
     }
 }

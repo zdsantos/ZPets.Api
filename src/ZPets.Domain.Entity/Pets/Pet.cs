@@ -8,20 +8,22 @@ namespace ZPets.Domain.Entities.Pets
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public float ActualWeight { get; set; }
+        public PetType Type { get; set; }
         public string Breed { get; set; }
         public Gender Gender { get; set; }
-        public string PictureUrl { get; set; }
+        public string? PictureUrl { get; set; }
         public List<PetOwnership> PetOwners { get; set; } = new();
         public List<Vaccine> Vaccines { get; set; } = new();
         public List<Weight> Weights { get; set; } = new();
 
-        public static Pet Create(string name, DateTime birthDate, string breed, Gender gender, float weight)
+        public static Pet Create(string name, DateTime birthDate, PetType type, string breed, Gender gender, float weight)
         {
-            var pet =  new Pet
+            var pet = new Pet
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = name,
                 BirthDate = birthDate,
+                Type = type,
                 Breed = breed,
                 Gender = gender
             };
