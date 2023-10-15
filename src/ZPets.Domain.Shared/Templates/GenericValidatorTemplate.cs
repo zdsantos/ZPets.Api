@@ -8,14 +8,14 @@ namespace ZPets.Domain.Shared.Templates
     public abstract class GenericValidatorTemplate<TRequest> : IUseCaseValidator<TRequest> where TRequest : IRequest
     {
         protected readonly ApplicationContext _appContext;
-        protected readonly string _tutorId;
+        protected readonly string _userId;
         protected UseCaseResponse _response;
         protected TRequest _request;
 
         protected GenericValidatorTemplate(ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
         {
             _appContext = appContext;
-            _tutorId = httpContextAccessor.HttpContext!.GetUserId();
+            _userId = httpContextAccessor.HttpContext!.GetUserId();
         }
 
         public void SetRequest(TRequest request)

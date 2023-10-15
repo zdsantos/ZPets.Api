@@ -27,7 +27,7 @@
 
         public void SetForbidden()
         {
-            throw new NotImplementedException();
+            SetError(ErrorKind.Forbidden, new ErrorMessage("", ""));
         }
 
         private void SetError(ErrorKind errorKind, ErrorMessage error)

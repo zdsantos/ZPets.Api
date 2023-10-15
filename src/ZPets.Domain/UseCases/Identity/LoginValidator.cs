@@ -8,9 +8,14 @@ namespace ZPets.Domain.UseCases.Identity
 {
     public class LoginValidator : GenericValidatorTemplate<LoginRequest>
     {
-        public Tutor Tutor { get; set; }
-
         private readonly IdentityHelper _identityHelper;
+
+        public OutputData Data { get; private set; } = new();
+
+        public class OutputData
+        {
+            public Tutor? Tutor { get; set; }
+        }
 
         public LoginValidator(ApplicationContext appContext, IdentityHelper identityHelper, IHttpContextAccessor httpContextAccessor) : base(appContext, httpContextAccessor)
         {
@@ -24,9 +29,9 @@ namespace ZPets.Domain.UseCases.Identity
 
         protected override Task ValidateData()
         {
-            Tutor = _appContext.Tutors.Where(t => t.Email == _request.Email).First();
+            Data.Tutor = _appContext.Tutors.Where(t => t.Email == _request.Email).FirstOrDefault();
 
-            if (Tutor == null)
+            if (Data.Tutor == null)
             {
                 _response.SetNotFound(LoginError.Message.EmailNotFound);
             }
@@ -36,7 +41,7 @@ namespace ZPets.Domain.UseCases.Identity
                 return Task.CompletedTask;
             }
 
-            if (!_identityHelper.ComparePassword(_request.Password, Tutor!.Password))
+            if (!_identityHelper.ComparePassword(_request.Password, Data.Tutor!.Password))
             {
                 _response.SetNotFound(LoginError.Message.WrongPassword);
             }

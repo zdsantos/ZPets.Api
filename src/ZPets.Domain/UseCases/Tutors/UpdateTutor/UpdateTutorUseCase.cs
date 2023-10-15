@@ -1,67 +1,34 @@
-﻿using ZPets.Domain.Entities.Tutors;
+﻿using AutoMapper;
+using ZPets.Domain.Dto;
+using ZPets.Domain.Entities.Tutors;
+using ZPets.Domain.Shared.Templates;
 using ZPets.Infra.Data;
 
 namespace ZPets.Domain.UseCases.Tutors.UpdateTutor
 {
-    //public class UpdateTutorUseCase : BaseUseCase<UpdateTutorRequest, string>
-    //{
-    //    private Tutor? _tutor;
+    public class UpdateTutorUseCase : GenericUseCaseTemplate<UpdateTutorRequest, UpdateTutorValidator, TutorDto>, IUpdateTutorUseCase
+    {
+        private Tutor _tutor;
 
-    //    public UpdateTutorUseCase(ApplicationContext appContext) : base(appContext)
-    //    {
-    //    }
+        public UpdateTutorUseCase(ApplicationContext appContext, UpdateTutorValidator validator, IMapper mapper) : base(appContext, validator, mapper)
+        {
+        }
 
-    //    public override Task Process()
-    //    {
-    //        _appContext.Tutors.Update(_tutor!);
-    //        _appContext.SaveChanges();
-    //        _response.SetData(_tutor!.Id.ToString());
+        protected override Task Process()
+        {
+            _tutor = _validator.Data.Tutor!;
 
-    //        return Task.CompletedTask;
-    //    }
+            _tutor.Update(_request.Name!, _request.Email!);
 
-    //    public override Task Validate()
-    //    {
-    //        ValidateEmptyFields();
+            _appContext.Tutors.Update(_tutor);
+            _appContext.SaveChanges();
 
-    //        if (!_response.Success())
-    //        {
-    //            return Task.CompletedTask;
-    //        }
+            return Task.CompletedTask;
+        }
 
-    //        ValidateTutor();
-
-    //        if (!_response.Success())
-    //        {
-    //            return Task.CompletedTask;
-    //        }
-
-    //        ValidateEmailAvalability();
-
-    //        return Task.CompletedTask;
-    //    }
-
-    //    private void ValidateEmptyFields()
-    //    {
-    //    }
-
-    //    private void ValidateTutor()
-    //    {
-    //        _tutor = _appContext.Tutors.Find(_request.TutorId);
-
-    //        if (_tutor == null)
-    //        {
-    //            _response.SetBadRequest("", "Tutor não encontrado");
-    //        }
-    //    }
-
-    //    private void ValidateEmailAvalability()
-    //    {
-    //        var tutor = _appContext.Tutors.Where(t => t.Email == _request.Email);
-    //        if (tutor.Any() && tutor.First().Id != _tutor!.Id)
-    //        {
-    //            _response.SetBadRequest("", "Email já está sendo utilizado");
-    //        }
-    //    }
-    //}
+        protected override TutorDto GetResult()
+        {
+            return _mapper.Map<TutorDto>(_tutor);
+        }
+    }
 }

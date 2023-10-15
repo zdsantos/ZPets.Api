@@ -5,5 +5,6 @@
         BadRequest = 400,
         NotFound = 404,
         Unauthorized = 401,
+        Forbidden = 403
     }
 }

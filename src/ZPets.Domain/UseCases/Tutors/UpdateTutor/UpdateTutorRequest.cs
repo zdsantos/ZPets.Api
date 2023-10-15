@@ -1,11 +1,13 @@
-﻿namespace ZPets.Domain.UseCases.Tutors.UpdateTutor
+﻿using ZPets.Domain.Shared.Interfaces;
+
+namespace ZPets.Domain.UseCases.Tutors.UpdateTutor
 {
-    public class UpdateTutorRequest
+    public class UpdateTutorRequest : IRequest
     {
-        public Guid TutorId { get; set; }
+        public string? TutorId { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }

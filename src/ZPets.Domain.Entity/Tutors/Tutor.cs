@@ -14,5 +14,11 @@
 
             Pets.Add(petOwnership);
         }
+
+        public void Update(string name, string email)
+        {
+            this.Name = name;
+            this.Email = email;
+        }
     }
 }

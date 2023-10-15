@@ -3,6 +3,7 @@ using ZPets.Domain.UseCases.Identity;
 using ZPets.Domain.UseCases.Pets.CreatePet;
 using ZPets.Domain.UseCases.Tutors.GetTutor;
 using ZPets.Domain.UseCases.Tutors.RegisterTutor;
+using ZPets.Domain.UseCases.Tutors.UpdateTutor;
 
 namespace ZPets.Domain
 {
@@ -16,18 +17,22 @@ namespace ZPets.Domain
 
         private static void LoadUseCases(ContainerBuilder builder)
         {
-            builder.RegisterType<GetTutorUseCase>().As<IGetTutorUseCase>().InstancePerLifetimeScope();
-            builder.RegisterType<RegisterTutorUseCase>().As<IRegisterTutorUseCase>().InstancePerLifetimeScope();
             builder.RegisterType<LoginUseCase>().As<ILoginUseCase>().InstancePerLifetimeScope();
+            
+            builder.RegisterType<RegisterTutorUseCase>().As<IRegisterTutorUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<GetTutorUseCase>().As<IGetTutorUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<UpdateTutorUseCase>().As<IUpdateTutorUseCase>().InstancePerLifetimeScope();
 
             builder.RegisterType<CreatePetUseCase>().As<ICreatePetUseCase>().InstancePerLifetimeScope();
         }
 
         private static void LoadValidators(ContainerBuilder builder)
         {
-            builder.RegisterType<GetTutorValidator>().InstancePerLifetimeScope();
-            builder.RegisterType<RegisterTutorValidator>().InstancePerLifetimeScope();
             builder.RegisterType<LoginValidator>().InstancePerLifetimeScope();
+            
+            builder.RegisterType<RegisterTutorValidator>().InstancePerLifetimeScope();
+            builder.RegisterType<GetTutorValidator>().InstancePerLifetimeScope();
+            builder.RegisterType<UpdateTutorValidator>().InstancePerLifetimeScope();
 
             builder.RegisterType<CreatePetValidator>().InstancePerLifetimeScope();
         }

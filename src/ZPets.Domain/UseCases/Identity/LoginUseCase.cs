@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using ZPets.Domain.Dto;
 using ZPets.Domain.Shared.Templates;
 using ZPets.Infra.Data;
 using ZPets.Infra.Helpers;
 
 namespace ZPets.Domain.UseCases.Identity
 {
-    public class LoginUseCase : GenericUseCaseTemplate<LoginRequest, LoginValidator, string>, ILoginUseCase
+    public class LoginUseCase : GenericUseCaseTemplate<LoginRequest, LoginValidator, LoginDto>, ILoginUseCase
     {
         private string _token;
 
@@ -16,14 +17,14 @@ namespace ZPets.Domain.UseCases.Identity
             _identityHelper = identityHelper;
         }
 
-        protected override string GetResult()
+        protected override LoginDto GetResult()
         {
-            return _token;
+            return new LoginDto { Token = _token, User = _mapper.Map<TutorDto>(_validator.Data.Tutor!) };
         }
 
         protected override Task Process()
         {
-            _token = _identityHelper.GenerateToken(_validator.Tutor.Id, _validator.Tutor.Email);
+            _token = _identityHelper.GenerateToken(_validator.Data.Tutor!.Id, _validator.Data.Tutor!.Email);
 
             return Task.CompletedTask;
         }

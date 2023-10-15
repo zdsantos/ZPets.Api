@@ -15,7 +15,7 @@ namespace ZPets.Domain.UseCases.Pets.CreatePet
 
         protected override Task<bool> HasPermissions()
         {
-            bool hasPermissions = !string.IsNullOrEmpty(_tutorId) && _tutorId! == _request.TutorId;
+            bool hasPermissions = !string.IsNullOrEmpty(_userId) && _userId! == _request.TutorId;
             return Task.FromResult(hasPermissions);
         }
 

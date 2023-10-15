@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ZPets.Domain.Dto;
 using ZPets.Domain.Shared.Templates;
 using ZPets.Domain.UseCases.Identity;
 
@@ -16,9 +17,9 @@ namespace ZPets.Api.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody] LoginRequest request)
+        public async Task<ActionResult<LoginDto>> Login([FromBody] LoginRequest request)
         {
-            UseCaseResponseData<string> response = await _serviceProvider.GetService<ILoginUseCase>()!.Execute(request);
+            UseCaseResponseData<LoginDto> response = await _serviceProvider.GetService<ILoginUseCase>()!.Execute(request);
 
             if (!response.Success())
             {
