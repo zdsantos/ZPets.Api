@@ -1,7 +1,9 @@
-﻿namespace ZPets.Domain.UseCases.Pets.ListPets
+﻿using ZPets.Domain.Shared.Interfaces;
+
+namespace ZPets.Domain.UseCases.Pets.ListPets
 {
-    public class ListPetsRequest
+    public class ListPetsRequest : IRequest
     {
-        public Guid TutorId { get; set; }
+        public string TutorId { get; set; }
     }
 }

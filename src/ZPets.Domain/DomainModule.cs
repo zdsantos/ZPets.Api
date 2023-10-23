@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ZPets.Domain.UseCases.Identity;
 using ZPets.Domain.UseCases.Pets.CreatePet;
+using ZPets.Domain.UseCases.Pets.ListPets;
 using ZPets.Domain.UseCases.Tutors.GetTutor;
 using ZPets.Domain.UseCases.Tutors.RegisterTutor;
 using ZPets.Domain.UseCases.Tutors.UpdateTutor;
@@ -24,6 +25,7 @@ namespace ZPets.Domain
             builder.RegisterType<UpdateTutorUseCase>().As<IUpdateTutorUseCase>().InstancePerLifetimeScope();
 
             builder.RegisterType<CreatePetUseCase>().As<ICreatePetUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<ListPetsUseCase>().As<IListPetsUseCase>().InstancePerLifetimeScope();
         }
 
         private static void LoadValidators(ContainerBuilder builder)
@@ -35,6 +37,7 @@ namespace ZPets.Domain
             builder.RegisterType<UpdateTutorValidator>().InstancePerLifetimeScope();
 
             builder.RegisterType<CreatePetValidator>().InstancePerLifetimeScope();
+            builder.RegisterType<ListPetsValidator>().InstancePerLifetimeScope();
         }
     }
 }

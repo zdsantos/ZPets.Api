@@ -1,40 +1,33 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using ZPets.Domain.Dto;
 using ZPets.Domain.Entities.Pets;
+using ZPets.Domain.Shared.Templates;
 using ZPets.Infra.Data;
 
 namespace ZPets.Domain.UseCases.Pets.ListPets
 {
-    //public class ListPetsUseCase : BaseUseCase<ListPetsRequest, List<Pet>>
-    //{
-    //    public ListPetsUseCase(ApplicationContext appContext) : base(appContext)
-    //    {
-    //    }
+    public class ListPetsUseCase : GenericUseCaseTemplate<ListPetsRequest, ListPetsValidator, List<PetDto>>, IListPetsUseCase
+    {
+        private List<Pet> _pets;
 
-    //    public override async Task Process()
-    //    {
-    //        var tutor = await _appContext.Tutors
-    //            .Include(t => t.Pets)
-    //            .ThenInclude(po => po.Pet).AsSplitQuery()
-    //            .FirstAsync(t => t.Id == _request.TutorId);
+        public ListPetsUseCase(ApplicationContext appContext, ListPetsValidator validator, IMapper mapper) : base(appContext, validator, mapper)
+        {
+        }
 
-    //        _response.SetData(tutor.Pets.Select(po => po.Pet).ToList());
-    //    }
+        protected override async Task Process()
+        {
+            var tutor = await _appContext.Tutors
+                .Include(t => t.Pets)
+                .ThenInclude(po => po.Pet).AsSplitQuery()
+                .FirstAsync(t => t.Id == _request.TutorId);
 
-    //    public override Task Validate()
-    //    {
-    //        ValidateTutor();
+            _pets = tutor.Pets.Select(po => po.Pet).ToList();
+        }
 
-    //        return Task.CompletedTask;
-    //    }
-
-    //    private void ValidateTutor()
-    //    {
-    //        var tutor = _appContext.Tutors.Find(_request.TutorId);
-
-    //        if (tutor == null)
-    //        {
-    //            _response.SetBadRequest("", "Tutor não encontrado");
-    //        }
-    //    }
-    //}
+        protected override List<PetDto> GetResult()
+        {
+            return _pets.Select(p => _mapper.Map<PetDto>(p)).ToList();
+        }
+    }
 }

@@ -2,6 +2,7 @@
 using ZPets.Domain.Dto;
 using ZPets.Domain.Shared.Templates;
 using ZPets.Domain.UseCases.Pets.CreatePet;
+using ZPets.Domain.UseCases.Pets.ListPets;
 
 namespace ZPets.Api.Controllers
 {
@@ -50,20 +51,20 @@ namespace ZPets.Api.Controllers
         //    return new OkObjectResult(response.Data);
         //}
 
-        //[HttpGet]
-        //public async Task<ActionResult<List<Pet>>> ListPets([FromRoute] Guid tutorId)
-        //{
-        //    UseCaseResponseData<List<Pet>> response = await new ListPetsUseCase(_appContext).Execute(new ListPetsRequest() { TutorId = tutorId });
+        [HttpGet]
+        public async Task<ActionResult<List<PetDto>>> ListPets([FromRoute] string tutorId)
+        {
+            UseCaseResponseData<List<PetDto>> response = await _serviceProvider.GetService<IListPetsUseCase>()!.Execute(new ListPetsRequest() { TutorId = tutorId });
 
-        //    if (!response.Success())
-        //    {
-        //        return new ObjectResult(response.Errors)
-        //        {
-        //            StatusCode = (int)response.GetErrorKind().Value,
-        //        };
-        //    }
+            if (!response.Success())
+            {
+                return new ObjectResult(response.Errors)
+                {
+                    StatusCode = (int)response.ErrorKind,
+                };
+            }
 
-        //    return new OkObjectResult(response.Data);
-        //}
+            return new OkObjectResult(response.Data);
+        }
     }
 }
