@@ -28,7 +28,6 @@ namespace ZPets.Domain.UseCases.Tutors.RegisterTutor
             };
 
             _appContext.Tutors.Add(newTutor);
-            _appContext.SaveChanges();
 
             _tutor = newTutor;
 

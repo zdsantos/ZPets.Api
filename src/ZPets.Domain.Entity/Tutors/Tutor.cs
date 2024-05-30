@@ -1,4 +1,6 @@
-﻿namespace ZPets.Domain.Entities.Tutors
+﻿using System.Linq.Expressions;
+
+namespace ZPets.Domain.Entities.Tutors
 {
     public class Tutor
     {
@@ -19,6 +21,22 @@
         {
             this.Name = name;
             this.Email = email;
+        }
+
+        public static class Expression
+        {
+            public static class Criteria
+            {
+                public static Expression<Func<Tutor, bool>> Id(string tutorId)
+                {
+                    return t => t.Id == tutorId;
+                }
+
+                public static Expression<Func<Tutor, bool>> Email(string email)
+                {
+                    return t => t.Email == email;
+                }
+            }
         }
     }
 }

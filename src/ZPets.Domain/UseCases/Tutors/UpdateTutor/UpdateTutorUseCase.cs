@@ -18,10 +18,9 @@ namespace ZPets.Domain.UseCases.Tutors.UpdateTutor
         {
             _tutor = _validator.Data.Tutor!;
 
-            _tutor.Update(_request.Name!, _request.Email!);
+            _tutor.Update(_request.Name, _request.Email);
 
             _appContext.Tutors.Update(_tutor);
-            _appContext.SaveChanges();
 
             return Task.CompletedTask;
         }

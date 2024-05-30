@@ -1,10 +1,13 @@
-﻿namespace ZPets.Domain.Helpers
+﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
+
+namespace ZPets.Domain.Helpers
 {
     public static class ValidatorsHelper
     {
         public static bool ValidatePassword(string password)
         {
-            return true;
+            // Add rules: special caracters
+            return password.Length >= 6;
         }
     }
 }

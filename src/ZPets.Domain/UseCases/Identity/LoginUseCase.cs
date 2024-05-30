@@ -19,7 +19,7 @@ namespace ZPets.Domain.UseCases.Identity
 
         protected override LoginDto GetResult()
         {
-            return new LoginDto { Token = _token, User = _mapper.Map<TutorDto>(_validator.Data.Tutor!) };
+            return new LoginDto { Token = _token, User = _mapper.Map<TutorDto>(_validator.Data.Tutor) };
         }
 
         protected override Task Process()

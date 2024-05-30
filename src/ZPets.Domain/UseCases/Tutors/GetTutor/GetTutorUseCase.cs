@@ -2,6 +2,7 @@
 using ZPets.Domain.Dto;
 using ZPets.Domain.Entities.Tutors;
 using ZPets.Domain.Shared.Templates;
+using ZPets.Domain.Specifications;
 using ZPets.Infra.Data;
 
 namespace ZPets.Domain.UseCases.Tutors.GetTutor
@@ -14,16 +15,15 @@ namespace ZPets.Domain.UseCases.Tutors.GetTutor
         {
         }
 
-        protected override Task Process()
+        protected override async Task Process()
         {
-            _tutor = _appContext.Tutors.Find(_request.TutorId);
+            TutorSpecification spec = new(_appContext);
+            _tutor = await spec.Get(_request.TutorId);
 
             if (_tutor == null)
             {
                 _response.SetNotFound(TutorsError.Message.NotFound);
             }
-
-            return Task.CompletedTask;
         }
 
         protected override TutorDto GetResult()

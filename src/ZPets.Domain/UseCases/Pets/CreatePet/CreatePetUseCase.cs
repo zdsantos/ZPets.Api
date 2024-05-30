@@ -26,7 +26,6 @@ namespace ZPets.Domain.UseCases.Pets.CreatePet
 
             _appContext.Pets.Add(_newPet);
             _appContext.Tutors.Update(_validator.Tutor);
-            _appContext.SaveChanges();
 
             return Task.CompletedTask;
         }

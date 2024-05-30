@@ -20,7 +20,7 @@ namespace ZPets.Domain.UseCases.Tutors.UpdateTutor
 
         protected override Task<bool> HasPermissions()
         {
-            bool hasPermissions = !string.IsNullOrEmpty(_userId) && _userId! == _request.TutorId;
+            bool hasPermissions = !string.IsNullOrEmpty(_userId) && _userId == _request.TutorId;
             return Task.FromResult(hasPermissions);
         }
 

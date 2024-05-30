@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ZPets.Domain.Entities.Tutors;
 using ZPets.Domain.Shared.Templates;
+using ZPets.Domain.Specifications;
 using ZPets.Infra.Data;
 using ZPets.Infra.Helpers;
 
@@ -27,26 +28,21 @@ namespace ZPets.Domain.UseCases.Identity
             return Task.FromResult(true);
         }
 
-        protected override Task ValidateData()
+        protected override async Task ValidateData()
         {
-            Data.Tutor = _appContext.Tutors.Where(t => t.Email == _request.Email).FirstOrDefault();
+            TutorSpecification spec = new(_appContext);
+            Data.Tutor = await spec.GetByEmail(_request.Email);
 
             if (Data.Tutor == null)
             {
                 _response.SetNotFound(LoginError.Message.EmailNotFound);
+                return;
             }
 
-            if (!_response.Success())
-            {
-                return Task.CompletedTask;
-            }
-
-            if (!_identityHelper.ComparePassword(_request.Password, Data.Tutor!.Password))
+            if (!_identityHelper.ComparePassword(_request.Password, Data.Tutor.Password))
             {
                 _response.SetNotFound(LoginError.Message.WrongPassword);
             }
-
-            return Task.CompletedTask;
         }
 
         protected override void ValidateRequest()

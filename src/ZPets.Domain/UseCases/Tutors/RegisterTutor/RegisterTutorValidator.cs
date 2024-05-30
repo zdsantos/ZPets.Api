@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using ZPets.Domain.Entities.Tutors;
 using ZPets.Domain.Helpers;
 using ZPets.Domain.Shared.Templates;
+using ZPets.Domain.Specifications;
 using ZPets.Infra.Data;
 
 namespace ZPets.Domain.UseCases.Tutors.RegisterTutor
@@ -18,40 +20,38 @@ namespace ZPets.Domain.UseCases.Tutors.RegisterTutor
 
         protected override void ValidateRequest()
         {
-            if (string.IsNullOrEmpty(_request.Name))
+            if (string.IsNullOrWhiteSpace(_request.Name))
             {
                 _response.SetBadRequest(TutorsError.Message.EmptyName);
                 return;
             }
 
-            if (string.IsNullOrEmpty(_request.Password))
+            if (string.IsNullOrWhiteSpace(_request.Password))
             {
                 _response.SetBadRequest(TutorsError.Message.EmptyPassword);
                 return;
             }
 
-            if (string.IsNullOrEmpty(_request.Email))
+            if (string.IsNullOrWhiteSpace(_request.Email))
             {
                 _response.SetBadRequest(TutorsError.Message.EmptyEmail);
             }
         }
 
-        protected override Task ValidateData()
+        protected override async Task ValidateData()
         {
-            bool emailAlreadyInUse = _appContext.Tutors.Where(t => t.Email == _request.Email).Any();
+            TutorSpecification spec = new(_appContext);
+            Tutor? tutorFound = await spec.GetByEmail(_request.Email);
 
-            if (emailAlreadyInUse)
+            if (tutorFound != null)
             {
                 _response.SetBadRequest(TutorsError.Message.EmailAlreadInUse);
-                return Task.CompletedTask;
             }
 
             if (!ValidatorsHelper.ValidatePassword(_request.Password))
             {
                 _response.SetBadRequest(TutorsError.Message.WrongPatternPassword);
             }
-
-            return Task.CompletedTask;
         }
     }
 }

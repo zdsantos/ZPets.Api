@@ -1,4 +1,5 @@
 ﻿using ZPets.Domain.Entities.Tutors;
+using System.Linq.Expressions;
 
 namespace ZPets.Domain.Entities.Pets
 {
@@ -58,6 +59,22 @@ namespace ZPets.Domain.Entities.Pets
         public bool IsOwnedBy(string tutorId)
         {
             return PetOwners.Find(po => po.TutorId == tutorId) != null;
+        }
+
+        public static class Expression
+        {
+            public static class Criteria
+            {
+                public static Expression<Func<Pet, bool>> Id(string petId)
+                {
+                    return p => p.Id == petId;
+                }
+
+                public static Expression<Func<Pet, bool>> Tutor(string tutorId, bool onlyOwner)
+                {
+                    return p => p.PetOwners.Any(po => po.TutorId == tutorId && (po.Type == OwnerType.Owner || !onlyOwner));
+                }
+            }
         }
     }
 }

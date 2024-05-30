@@ -33,6 +33,7 @@ namespace ZPets.Domain.Shared.Templates
                 return _response;
 
             await Process();
+            _appContext.SaveChanges();
 
             if (!_response.Success())
                 return _response;
